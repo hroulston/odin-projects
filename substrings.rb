@@ -4,7 +4,7 @@
 #in the original string and how many times it was found.
 #Next, make sure your method can handle multiple words:
 
-dictionary = ["how", "come", "be", "ever", "eve"]
+dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
 def substrings (word, list)
   word_count = Hash.new(0)
