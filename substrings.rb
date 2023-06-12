@@ -8,6 +8,6 @@ dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","o
 
 def substrings (word, list)
   word_count = Hash.new(0)
-  list.each { |a| word_count[a] += 1 if word.include?(a)}
+  list.each { |a| word_count[a] += 1 if /#{a}/.match(word)}
   word_count
 end
