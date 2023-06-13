@@ -8,6 +8,8 @@ dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","o
 
 def substrings (word, list)
   word_count = Hash.new(0)
-  list.each { |a| word_count[a] += 1 if /#{a}/.match(word)}
+  new_word = word.gsub(/[^a-zA-Z]/, "")
+  list.each { |a| word_count[a] += 1 if /#{a}/i.match(new_word)}
   word_count
+  # new_word
 end
