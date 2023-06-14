@@ -9,9 +9,12 @@ dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","o
 def substrings (word, list)
   word_count = Hash.new(0)
   new_word = word.gsub(/[^a-zA-Z]/, " ")
+
   list.each do |a| 
     count = new_word.scan(/#{a}/i).length
     word_count[a] = count unless count == 0
   end
+
   word_count
+  
 end
