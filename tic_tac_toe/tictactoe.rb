@@ -68,13 +68,14 @@ end
 
 choose_position1
 
-# def choose_position2
-#   position = "Second player, type in number of position you want to play."
-#   print_slow position
-#   position_answer = gets.chomp
+def choose_position2
+  position = "Second player, type in number of position you want to play."
+  print_slow position
+  position_answer = gets.chomp
+  index_position = position_answer.to_i - 1
+  $board_array[index_position] = $player2
+  game_board($board_array)
+end
 
-#   board_in_play = board_array.map{ |n, position_answer| n == position_answer? player2 : n }
-#   game_board(board_in_play)
-# end
-
+choose_position2
 
