@@ -79,3 +79,21 @@ end
 
 choose_position2
 
+def turn_count(board_array)
+  counter = 0
+  board_array.each do |space|
+    if space == "x" || space == "O"
+      counter += 1
+    end
+  end
+  counter
+end
+
+def whose_turn(board_array)
+  turn_count(board_array) % 2 == 0 ? choose_position2 : choose_position1
+end
+
+whose_turn($board_array)
+
+def game_play(board)
+end
