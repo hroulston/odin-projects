@@ -57,12 +57,29 @@ end
 
 choose_token
 
+def position_taken?(board, index)
+  if (board[index] == " ") || (board[index] == "") || (board[index] == nil)
+    return false
+  else
+    return true
+  end
+end
+
+def valid_move?(board, index)
+  if index.between?(0,8) && !position_taken?(board,index)
+    return true
+  end
+end
+
 def choose_position1
   position = "First player, type in number of position you want to play."
   print_slow position
   position_answer = gets.chomp
   index_position = position_answer.to_i - 1
-  $board_array[index_position] = $player1
+  if valid_move?($board_array, index_position)
+    $board_array[index_position] = $player1
+    choose_position1
+  end
   game_board($board_array)
 end
 
@@ -73,7 +90,10 @@ def choose_position2
   print_slow position
   position_answer = gets.chomp
   index_position = position_answer.to_i - 1
-  $board_array[index_position] = $player2
+  if valid_move?($board_array, index_position)
+    $board_array[index_position] = $player2
+    choose_position2
+  end
   game_board($board_array)
 end
 
@@ -93,7 +113,10 @@ def whose_turn(board_array)
   turn_count(board_array) % 2 == 0 ? choose_position2 : choose_position1
 end
 
-whose_turn($board_array)
+# def game_play(board_array)
+#   until turn_count(board_array) == 9
+#     whose_turn(board_array)
+#   end
+# end
 
-def game_play(board)
-end
+# game_play($board_array)
