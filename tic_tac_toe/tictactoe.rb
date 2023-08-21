@@ -2,6 +2,16 @@ $player1 = ""
 $player2 = "" 
 $board_array = [1,2,3,4,5,6,7,8,9]
 $board_in_play = []
+winning_combos = [
+  [0,1,2]
+  [3,4,5]
+  [6,7,8]
+  [0,3,6]
+  [1,4,7]
+  [2,5,8]
+  [0,4,8]
+  [2,4,6]
+]
 
 def print_slow string
     string.each_char do |value|
