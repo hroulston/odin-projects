@@ -135,6 +135,20 @@ def won?(board_array)
   end
 end
 
+def full?(board_array)
+  board_array.all? {|i| i == "X" i == "O"}
+end
+
+def draw?(board_array)
+  if !won?(board_array) && full?(board_array)
+    return true
+  elsif !won?(board_array) && !full?(board_array)
+    return false
+  else won?(board_array)
+    return false
+  end
+end
+
 def game_play(board_array)
   # until over?(board_array)
     whose_turn(board_array)
@@ -142,7 +156,7 @@ def game_play(board_array)
   if won?(board_array)
     winner(board_array) == "X" || winner(board_array) == "O"
     puts "Congratulations #{winner(board_array)!}"
-  # elsif draw?(board_array)
+  elsif draw?(board_array)
     puts "Cats Game!"
   end
 end
