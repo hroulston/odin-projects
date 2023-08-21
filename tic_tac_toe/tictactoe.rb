@@ -81,34 +81,6 @@ def valid_move?(board, index)
   end
 end
 
-def choose_position1
-  position = "First player, type in number of position you want to play."
-  print_slow position
-  position_answer = gets.chomp
-  index_position = position_answer.to_i - 1
-  if valid_move?($board_array, index_position)
-    $board_array[index_position] = $player1
-    choose_position1
-  end
-  game_board($board_array)
-end
-
-choose_position1
-
-def choose_position2
-  position = "Second player, type in number of position you want to play."
-  print_slow position
-  position_answer = gets.chomp
-  index_position = position_answer.to_i - 1
-  if valid_move?($board_array, index_position)
-    $board_array[index_position] = $player2
-    choose_position2
-  end
-  game_board($board_array)
-end
-
-choose_position2
-
 def turn_count(board_array)
   counter = 0
   board_array.each do |space|
@@ -121,12 +93,42 @@ end
 
 def whose_turn(board_array)
   turn_count(board_array) % 2 == 0 ? choose_position2 : choose_position1
+
+  def choose_position1
+    position = "First player, type in number of position you want to play."
+    print_slow position
+    position_answer = gets.chomp
+    index_position = position_answer.to_i - 1
+    if valid_move?($board_array, index_position)
+      $board_array[index_position] = $player1
+    else
+      choose_position1
+    end
+    game_board($board_array)
+  end
+
+  def choose_position2
+    position = "Second player, type in number of position you want to play."
+    print_slow position
+    position_answer = gets.chomp
+    index_position = position_answer.to_i - 1
+    if valid_move?($board_array, index_position)
+      $board_array[index_position] = $player2
+    else
+      choose_position2
+    end
+    game_board($board_array)
+  end
 end
 
-# def game_play(board_array)
-#   until turn_count(board_array) == 9
-#     whose_turn(board_array)
-#   end
-# end
-
-# game_play($board_array)
+def game_play(board_array)
+  # until over?(board_array)
+    whose_turn(board_array)
+  end
+  # if won?(board_array)
+    winner(board_array) == "X" || winner(board_array) == "O"
+    puts "Congratulations #{winner(board_array)!}"
+  # elsif draw?(board_array)
+    puts "Cats Game!"
+  end
+end
