@@ -149,8 +149,20 @@ def draw?(board_array)
   end
 end
 
+def over?(board_array)
+  if draw?(board_array) || won?(board_array) || full?(board_array)
+    return true
+  end
+end
+
+def winner(board_array)
+  if won?(board_array)
+    return board_array[won?(board_array)[0]]
+  end
+end
+
 def game_play(board_array)
-  # until over?(board_array)
+  until over?(board_array)
     whose_turn(board_array)
   end
   if won?(board_array)
@@ -160,3 +172,5 @@ def game_play(board_array)
     puts "Cats Game!"
   end
 end
+
+game_play($board_array)
