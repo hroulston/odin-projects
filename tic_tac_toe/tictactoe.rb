@@ -67,16 +67,16 @@ end
 
 choose_token
 
-def position_taken?(board, index)
-  if (board[index] == " ") || (board[index] == "") || (board[index] == nil)
+def position_taken?(board_array, index)
+  if (board_array[index] == " ") || (board_array[index] == "") || (board_array[index] == nil)
     return false
   else
     return true
   end
 end
 
-def valid_move?(board, index)
-  if index.between?(0,8) && !position_taken?(board,index)
+def valid_move?(board_array, index)
+  if index.between?(0,8) && !position_taken?(board_array,index)
     return true
   end
 end
@@ -121,11 +121,25 @@ def whose_turn(board_array)
   end
 end
 
+def won?(board_array)
+  winning_combos.each do |win_combination|
+    win_index_1 = win_combination[0]
+    win_index_2 = win_combination[1]
+    win_index_3 = win_combination[2]
+
+    position_1 = board_array[win_index_1]
+    position_2 = board_array[win_index_2]
+    position_3 = board_array[win_index_3]
+
+    position_1 == position_2 && position_2 == position_3 && position_taken?(board_array, win_index_1)
+  end
+end
+
 def game_play(board_array)
   # until over?(board_array)
     whose_turn(board_array)
   end
-  # if won?(board_array)
+  if won?(board_array)
     winner(board_array) == "X" || winner(board_array) == "O"
     puts "Congratulations #{winner(board_array)!}"
   # elsif draw?(board_array)
