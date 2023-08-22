@@ -2,14 +2,14 @@ $player1 = ""
 $player2 = "" 
 $board_array = [1,2,3,4,5,6,7,8,9]
 $board_in_play = []
-winning_combos = [
-  [0,1,2]
-  [3,4,5]
-  [6,7,8]
-  [0,3,6]
-  [1,4,7]
-  [2,5,8]
-  [0,4,8]
+$winning_combos = [
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
   [2,4,6]
 ]
 
@@ -122,7 +122,7 @@ def whose_turn(board_array)
 end
 
 def won?(board_array)
-  winning_combos.each do |win_combination|
+  $winning_combos.each do |win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
@@ -135,42 +135,44 @@ def won?(board_array)
   end
 end
 
-def full?(board_array)
-  board_array.all? {|i| i == "X" i == "O"}
-end
+puts won?($board_array)
 
-def draw?(board_array)
-  if !won?(board_array) && full?(board_array)
-    return true
-  elsif !won?(board_array) && !full?(board_array)
-    return false
-  else won?(board_array)
-    return false
-  end
-end
+# def full?(board_array)
+#   board_array.all? {|i| i == "X" || i == "O"}
+# end
 
-def over?(board_array)
-  if draw?(board_array) || won?(board_array) || full?(board_array)
-    return true
-  end
-end
+# def draw?(board_array)
+#   if !won?(board_array) && full?(board_array)
+#     return true
+#   elsif !won?(board_array) && !full?(board_array)
+#     return false
+#   else won?(board_array)
+#     return false
+#   end
+# end
 
-def winner(board_array)
-  if won?(board_array)
-    return board_array[won?(board_array)[0]]
-  end
-end
+# def over?(board_array)
+#   if draw?(board_array) || won?(board_array) || full?(board_array)
+#     return true
+#   end
+# end
 
-def game_play(board_array)
-  until over?(board_array)
-    whose_turn(board_array)
-  end
-  if won?(board_array)
-    winner(board_array) == "X" || winner(board_array) == "O"
-    puts "Congratulations #{winner(board_array)!}"
-  elsif draw?(board_array)
-    puts "Cats Game!"
-  end
-end
+# def winner(board_array)
+#   if won?(board_array)
+#     return board_array[won?(board_array)[0]]
+#   end
+# end
 
-game_play($board_array)
+# def game_play(board_array)
+#   until over?(board_array)
+#     whose_turn(board_array)
+#   end
+#   if won?(board_array)
+#     winner(board_array) == "X" || winner(board_array) == "O"
+#     puts "Congratulations #{winner(board_array)}!"
+#   elsif draw?(board_array)
+#     puts "Cats Game!"
+#   end
+# end
+
+# game_play($board_array)
