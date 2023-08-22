@@ -15,7 +15,7 @@ $winning_combos = [
 
 def print_slow string
     string.each_char do |value|
-      putc value
+      puts value
       sleep 0.06
     end
     puts ""
