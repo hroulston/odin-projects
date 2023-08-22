@@ -4,7 +4,7 @@ WIN = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
 
 def print_slow string
     string.each_char do |value|
-      putc value
+      puts value
       sleep 0.06
     end
     puts ""
@@ -15,7 +15,7 @@ class Game
         @board = Array.new(9)
         @current_player_id = 0
         @players = [player1.new(self, "X"), player2.new(self, "O")]
-        puts print_slow "#{current_player} goes first."
+        print_slow "#{current_player} goes first."
     end
     attr_reader :board, :current_player_id
 
@@ -35,4 +35,34 @@ class Game
         @current_player_id = opposing_player_id
     end
 
+    def play
+    end
+
+    def position_available
+        (0..8).select {|position| @board[position].nil?}
+        #looking at numbers 0-8 if the board index of that number is nil then
+        # the position is available.
+    end
+
+    def place_marker
+
+    end
+end
+
+class Player
+    def initialize(game, marker)
+        @game = game
+        @marker = marker
+    end
+    attr_reader :marker
+
+    def select_position!
+        #makes the change immutable so another player cannot take this position by using bang.
+        @game.print_board
+        loop do
+            print_slow "Select your position number for marker #{marker}: "
+            selction = gets.to_i
+            
+        end
+    end
 end
