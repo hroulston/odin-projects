@@ -73,7 +73,10 @@ class Game
         position_available.empty?
     end
 
-    def player_won?
+    def player_won?(player)
+        LINES.any? do |line|
+            line.all? {|position| @board[position] == player.marker}
+        end
     end
 
     def print_board
