@@ -15,7 +15,7 @@ class Game
         @board = Array.new(9)
         @current_player_id = 0
         @players = [player1.new(self, "X"), player2.new(self, "O")]
-        print_slow "#{current_player} goes first."
+        print_slow "#{which_player_name} goes first."
     end
     attr_reader :board, :current_player_id
 
@@ -29,6 +29,10 @@ class Game
     
     def opposing_player
         @players[opposing_player_id]
+    end
+
+    def which_player_name
+        opposing_player_id == 0 ? "Player 1" : "Player 2"
     end
 
     def switch_players!
@@ -47,6 +51,15 @@ class Game
     def place_marker
 
     end
+
+    def board_full?
+    end
+
+    def player_won?
+    end
+
+    def print_board
+    end
 end
 
 class Player
@@ -62,7 +75,8 @@ class Player
         loop do
             print_slow "Select your position number for marker #{marker}: "
             selction = gets.to_i
-            
+            return selection if @game.position_available.include?(selection)
+            print_slow "Position #{selection} is not available. Try again."
         end
     end
 end
