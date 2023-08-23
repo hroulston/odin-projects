@@ -40,6 +40,21 @@ class Game
     end
 
     def play
+        loop do
+            place_marker(current_player)
+
+            if player_won?(current_player)
+                print_slow "#{which_player_name} wins!"
+                print_board
+                return
+                #return will officially end the loop
+            elsif board_full?
+                puts "Cats Game!"
+                print_board
+                return
+            end
+            switch_players!
+        end
     end
 
     def position_available
@@ -48,11 +63,14 @@ class Game
         # the position is available.
     end
 
-    def place_marker
-
+    def place_marker(player)
+        position = player.select_position!
+        print_slow "#{which_player_name} chooses #{player.marker} to play position #{position}."
+        @board[position + 1] = player.marker
     end
 
     def board_full?
+        position_available.empty?
     end
 
     def player_won?
