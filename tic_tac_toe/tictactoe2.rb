@@ -1,11 +1,11 @@
 module TicTacToe
 
-    WIN = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
+    WIN = [[1,2,3], [4,5,6], [7,8,9], [1,5,9], [3,5,7], [1,4,7], [3,6,9], [2,5,8]]
 
     
     class Game
         def initialize(player1 = Player, player2 = Player)
-            @board = Array.new(9)
+            @board = Array.new(10)
             @current_player_id = 0
             @players = [player1.new(self, "X"), player2.new(self, "O")]
             print_slow "#{which_player_name} goes first."
@@ -61,7 +61,7 @@ module TicTacToe
     
 
         def position_available
-            (0..8).select {|position| @board[position].nil?}
+            (1..9).select {|position| @board[position].nil?}
             #looking at numbers 0-8 if the board index of that number is nil then
             # the position is available.
         end
@@ -69,7 +69,7 @@ module TicTacToe
         def place_marker(player)
             position = player.select_position!
             print_slow "#{which_player_name} chooses #{player.marker} to play position #{position}."
-            @board[position + 1] = player.marker
+            @board[position] = player.marker
         end
 
         def board_full?
@@ -83,15 +83,12 @@ module TicTacToe
         end
 
         def print_board
-            #Still working through how to display board properly
-            @board.each.with_index(1) do |item, index|
-                print index
-            end
-            puts " #{@board} " "|" " #{board_array[1]} " "|" " #{board_array[2]} "
+            board_array = [1,2,3,4,5,6,7,8,9]
+            puts " #{@board[1] == nil ? board_array[0] : @board[1]} " "|" " #{@board[2] == nil ? board_array[1] : @board[2]} " "|" " #{@board[3] == nil ? board_array[2] : @board[3]} "
             puts separator = "-----------"
-            puts " #{board_array[3]} " "|" " #{board_array[4]} " "|" " #{board_array[5]} "
+            puts " #{@board[4] == nil ? board_array[3] : @board[4]} " "|" " #{@board[5] == nil ? board_array[4] : @board[5]} " "|" " #{@board[6] == nil ? board_array[5] : @board[6]} "
             puts separator
-            puts " #{board_array[6]} " "|" " #{board_array[7]} " "|" " #{board_array[8]} "
+            puts " #{@board[7] == nil ? board_array[6] : @board[7]} " "|" " #{@board[8] == nil ? board_array[7] : @board[8]} " "|" " #{@board[9] == nil ? board_array[8] : @board[9]} "
         end
     end
 
